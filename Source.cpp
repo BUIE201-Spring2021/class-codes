@@ -1,72 +1,60 @@
 #include <iostream>
 using namespace std;
 
-// return_type name(parameters): void -> no return type
-// Function (name) overloading 
 
-const double PI = 3.14;
-
-double Area(double r)
+int Factorial(int n)
 {
-	return PI * r * r;
+	int result = 1;
+	for (int i = 1; i <= n; ++i)
+	{
+		result *= i;
+	}
+	return result;
 }
 
-//double Area(int squareLength)	// cannot have two functions that only differ by return type
-//{
-//	return squareLength * squareLength;
-//}
-
-int Area(int squareLength)
+int FactorialRecursive(int n)
 {
-	return squareLength * squareLength;
+	if (n == 1)
+		return 1;
+	else
+	{
+		int nMinus1Fact = FactorialRecursive(n - 1);
+		return nMinus1Fact * n;
+	}
 }
 
-int Area(int length, int width)
+int Fibonacci(int n)
 {
-	return length * width;
+	if (n < 3)
+		return 1;
+
+	int Prev = 1;
+	int PrevPrev = 1;
+
+	for (int i = 3; i <= n; ++i)
+	{
+		int current = Prev + PrevPrev;
+		PrevPrev = Prev;
+		Prev = current;
+	}
+
+	return Prev;
 }
 
-void NoReturn(int i = 5, int j = 10)
-{
-	cout << "i = " << i << endl;
-	cout << "j = " << j << endl;
-}
-
-void ModifyParameter(int input)
-{
-	cout << "input before modification " << input << endl;
-
-	input = 65;
-
-	cout << "input after modification " << input << endl;
-}
 
 int main()
 {
-	int squareLength = 5;
-	int area = Area(squareLength);
-	int area2 = Area(4);
-	cout << "Area of squareLenght: " << squareLength << " = " << area << endl;
+	int fact5 = Factorial(5);
+	cout << "Factorial(5) = " << fact5 << endl;
 
-	int rectangleArea = Area(6, 2);
-	cout << "Area of rectangle: " << rectangleArea << endl;
+	int fact5Recursive = FactorialRecursive(5);
+	cout << "FactorialRecursive(5) = " << fact5Recursive << endl;
 
-	NoReturn(7, 8);
-	NoReturn(7);
-	NoReturn();
+	int fibonacci5 = Fibonacci(5);
+	cout << "Fibonacci(5) = " << fibonacci5 << endl;
 
-	double areaDouble = Area(4.0);
-
-	// Area("345"); // Does not compile, type mismatch
-	float f = 4.345;
-	Area(f);	// cast: float -> double 
-	bool b = true;
-	Area(b);	// cast: bool -> int
-
-	int input = 30;
-	cout << "input in main before call " << input << endl;
-	ModifyParameter(input);
-	cout << "input in main after call " << input << endl;
+	int fibonacci7 = Fibonacci(7);
+	cout << "Fibonacci(7) = " << fibonacci7 << endl;
 
 	return 0;
 }
