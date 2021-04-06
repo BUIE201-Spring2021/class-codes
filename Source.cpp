@@ -1,103 +1,128 @@
 #include <iostream>
-#include <chrono>
-#include <vector>
-
-using std::chrono::high_resolution_clock;
-using std::chrono::duration_cast;
-using std::chrono::duration;
-using std::chrono::milliseconds;
 using namespace std;
 
-int Fibonacci(int n)
+// Date
+// Year, Month, Day
+
+struct Date
 {
-	if (n < 3)
-		return 1;
+	int Year;
+	int Month;
+	int Day;
+};
 
-	int Prev = 1;
-	int PrevPrev = 1;
+// call-by-value
+// function parameters are local variables
+void PrintDate(Date theDate)
+{
+	cout << "Before modification the day is: " << theDate.Day << "/" << theDate.Month << "/" << theDate.Year << endl;
+	theDate.Year++;
+	cout << "Next year's date is: " << theDate.Day << "/" << theDate.Month << "/" << theDate.Year << endl;
+}
 
-	for (int i = 3; i <= n; ++i)
+// public:	freely accessible
+// private: only internal access
+// protected: later
+class DateClass
+{
+	// Data fields
+	int Year;
+	int Month;
+	int Day;
+
+public:
+	DateClass();	// Constructor
+	DateClass(int YearIn, int MonthIn, int DayIn);
+
+	bool SetDate(int YearIn, int MonthIn, int DayIn);
+	void Print();
+};
+
+DateClass::DateClass()
+{
+	cout << "Default constructor DateClass::DateClass() was called" << endl;
+	Year = 1970;
+	Month = 1;
+	Day = 1;
+}
+
+DateClass::DateClass(int YearIn, int MonthIn, int DayIn)
+{
+	cout << "Parametric constructor DateClass::DateClass(int YearIn, int MonthIn, int DayIn) was called" << endl;
+
+	bool IsValid = SetDate(YearIn, MonthIn, DayIn);
+	if (!IsValid)
 	{
-		int current = Prev + PrevPrev;
-		PrevPrev = Prev;
-		Prev = current;
+		Year = 1970;
+		Month = 1;
+		Day = 1;
 	}
-
-	return Prev;
 }
 
-int FibonacciRecursive(int n)
+
+bool DateClass::SetDate(int YearIn, int MonthIn, int DayIn)
 {
-	// Base condition
-	if (n < 3)
-		return 1;
-	int FibonacciN2 = FibonacciRecursive(n - 2);
-	int FibonacciN1 = FibonacciRecursive(n - 1);
-	return FibonacciN2 + FibonacciN1;
+	if (YearIn <= 0 || MonthIn <= 0 || DayIn <= 0)
+	{
+		cout << "All values must be positive!" << endl;
+		return false;
+	}
+	// add more validation checks such as February, leap years ... 
+	else
+	{
+		Year = YearIn;
+		Month = MonthIn;
+		Day = DayIn;
+		return true;
+	}
 }
 
-// Memoization
-
-int FibonacciMemoize(int n, vector<int>& cache)
+void DateClass::Print()
 {
-	// Check base condition
-	if (n < 3)
-		return 1;
-	// Check whether the calculation result already exists in cache
-	if (cache[n] > 0)
-		return cache[n];
+	cout << "The day is: " << Day << "/" << Month << "/" << Year << endl;
+}
 
-	// Do calculation recursively, and store the result in cache
-	int FibonacciN2 = FibonacciMemoize(n - 2, cache);
-	int FibonacciN1 = FibonacciMemoize(n - 1, cache);
-	cache[n] = FibonacciN2 + FibonacciN1;
-	return cache[n];
+void PrintDate(int Year, int Month, int Day)
+{
+	cout << "The day is: " << Day << "/" << Month << "/" << Year << endl;
 }
 
 int main()
 {
-	int fibonacci5 = Fibonacci(5);
-	cout << "Fibonacci(5) = " << fibonacci5 << endl;
+	int Year = 2021;
+	int Month = 4;
+	int Day = 6;
 
-	int fibonacci7 = Fibonacci(7);
-	cout << "Fibonacci(7) = " << fibonacci7 << endl;
+	PrintDate(Year, Month, Day);
 
-	int fibonacciRecursive5 = FibonacciRecursive(5);
-	cout << "fibonacciRecursive5(5) = " << fibonacciRecursive5 << endl;
+	Date today;
+	// Date -> an abstaction, an idea, a definition
+	// today -> an instance of Date
+	today.Year = 2021;
+	today.Month = 4;
+	today.Day = 6;
 
-	vector<int> myVect = { 4, 2, 5, 6 };
-	myVect.push_back(10);
-	myVect.push_back(15);
+	PrintDate(today);
 
-	for (int i : myVect)
-	{
-		cout << i << endl;
-	}
+	Date tomorrow = today;
+	tomorrow.Day++;
+	PrintDate(tomorrow);
 
-	int fibonacciN = 50;
-	vector<int> cache;
-	for (int i = 0; i <= fibonacciN; ++i)
-		cache.push_back(0);
+	// Class -> definition
+	// Object -> instances
+	DateClass todayObject;
+	// Directly accessing fields is not permitted. 
+	// Data encapsulation / Data hiding
+	//todayObject.Year = 2021;
+	//todayObject.Month = 4;
+	//todayObject.Day = 6;
+	todayObject.Print();
+	bool Success = todayObject.SetDate(2021, -4, 6);
+	bool Success2 = todayObject.SetDate(2021, 4, 6);
+	todayObject.Print();
 
-	for (int i = 40; i < 50; ++i)
-	{
-		auto t1_iterative = high_resolution_clock::now();
-		cout << "Fibonacci(" << i << ") = " << Fibonacci(i) << endl;
-		auto t2_iterative = high_resolution_clock::now();
-		auto ms_iterative = duration_cast<milliseconds>(t2_iterative - t1_iterative);
-		std::cout << ms_iterative.count() << "ms\n";
+	DateClass tomorrowObject(2021, 4, 7);
+	tomorrowObject.Print();
 
-		auto t1_recursive = high_resolution_clock::now();
-		cout << "fibonacciRecursive(" << i << ") = " << FibonacciRecursive(i) << endl;
-		auto t2_recursive = high_resolution_clock::now();
-		auto ms_recursive = duration_cast<milliseconds>(t2_recursive - t1_recursive);
-		std::cout << ms_recursive.count() << "ms\n";
-
-		auto t1_memoize = high_resolution_clock::now();
-		cout << "FibonacciMemoize(" << i << ") = " << FibonacciMemoize(i, cache) << endl;
-		auto t2_memoize = high_resolution_clock::now();
-		auto ms_memoize = duration_cast<milliseconds>(t2_memoize - t1_memoize);
-		std::cout << ms_memoize.count() << "ms\n";
-	}
 	return 0;
 }
