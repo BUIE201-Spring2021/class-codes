@@ -3,19 +3,20 @@
 
 using namespace std;
 
+void PrintGlobal(DateClass theObject)
+{
+	cout << "PrintGlobal - begin" << endl;
+	theObject.Print();
+	cout << "PrintGlobal - end" << endl;
+}
+
 int main()
 {
-	// Class -> definition
-	// Object -> instances
-	DateClass todayObject;
+	cout << "main - begin" << endl;
 
-	todayObject.Print();
-	bool Success = todayObject.SetDate(2021, -4, 6);
-	bool Success2 = todayObject.SetDate(2021, 4, 6);
-	todayObject.Print();
+	DateClass today(2021, 4, 7);
 
-	DateClass tomorrowObject(2021, 4, 7);
-	tomorrowObject.Print();
+	cout << "main - end" << endl;
 
 	return 0;
 }

@@ -10,6 +10,8 @@ public:
 	DateClass();	// Constructor
 	DateClass(int YearIn, int MonthIn, int DayIn);
 
+	~DateClass();	// Destructor
+
 	bool SetDate(int YearIn, int MonthIn, int DayIn);
 	void Print();
 };

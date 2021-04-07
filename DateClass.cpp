@@ -24,6 +24,11 @@ DateClass::DateClass(int YearIn, int MonthIn, int DayIn)
 	}
 }
 
+DateClass::~DateClass()
+{
+	cout << "Destructor DateClass::~DateClass was called" << endl;
+}
+
 bool DateClass::SetDate(int YearIn, int MonthIn, int DayIn)
 {
 	if (YearIn <= 0 || MonthIn <= 0 || DayIn <= 0)
