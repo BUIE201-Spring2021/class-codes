@@ -8,6 +8,7 @@ class DateClass
 
 public:
 	DateClass();	// Constructor
+	DateClass(DateClass& original);	// Copy constructor
 	DateClass(int YearIn, int MonthIn, int DayIn);
 
 	~DateClass();	// Destructor

@@ -16,6 +16,8 @@ int main()
 
 	DateClass today(2021, 4, 7);
 
+	PrintGlobal(today);
+
 	cout << "main - end" << endl;
 
 	return 0;

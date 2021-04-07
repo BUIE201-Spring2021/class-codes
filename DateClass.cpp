@@ -11,6 +11,14 @@ DateClass::DateClass()
 	Day = 1;
 }
 
+DateClass::DateClass(DateClass& original)	// Copy constructor
+{
+	cout << "Copy constructor DateClass::DateClass(DateClass& original) was called" << endl;
+	Year = original.Year;
+	Month = original.Month;
+	Day = original.Day;
+}
+
 DateClass::DateClass(int YearIn, int MonthIn, int DayIn)
 {
 	cout << "Parametric constructor DateClass::DateClass(int YearIn, int MonthIn, int DayIn) was called" << endl;
