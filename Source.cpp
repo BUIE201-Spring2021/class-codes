@@ -40,6 +40,9 @@ int main()
 	cout << "main - after g" << w << endl;
 
 	cout << "w = " << w << "&w = " << &w << endl;
+	int* pW = &w;	
+	// pointer: address, type
+
 	h(&w);
 	cout << "main - after h" << w << endl;
 
