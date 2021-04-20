@@ -32,5 +32,6 @@ void Movie::AddViewer(Viewer* pViewer)
 	Print();
 
 	cout << "Viewer: " << endl;
-	(*pViewer).Print();
+	pViewer->Print();	// Functionally equivalent to the next statement
+	// (*pViewer).Print();
 }
