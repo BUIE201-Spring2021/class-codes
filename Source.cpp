@@ -13,5 +13,7 @@ int main()
 	Viewer caner("Caner Taskin");
 	caner.Print();
 
+	Matrix.AddViewer(&caner);
+
 	return 0;
 }

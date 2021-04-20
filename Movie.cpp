@@ -1,4 +1,5 @@
 #include "Movie.h"
+#include "Viewer.h"
 #include <iostream>
 
 using namespace std;
@@ -22,4 +23,14 @@ void Movie::Print()
 	cout << "Movie: " << Name << " has score: " << Score << endl;
 	cout << "Release date: ";
 	ReleaseDate.Print();
+}
+
+void Movie::AddViewer(Viewer* pViewer)
+{
+	cout << "Adding viewer to movie" << endl;
+	cout << "Movie: " << endl;
+	Print();
+
+	cout << "Viewer: " << endl;
+	(*pViewer).Print();
 }
