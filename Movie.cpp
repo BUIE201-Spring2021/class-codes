@@ -34,4 +34,33 @@ void Movie::AddViewer(Viewer* pViewer)
 	cout << "Viewer: " << endl;
 	pViewer->Print();	// Functionally equivalent to the next statement
 	// (*pViewer).Print();
+
+	Viewers.push_back(pViewer);
+}
+
+void Movie::ShowViewers()
+{
+	cout << "Movie: " << endl;
+	Print();
+
+	if (Viewers.empty())
+	{
+		cout << "has no viewers :(" << endl;
+	}
+	else
+	{
+		cout << "has " << Viewers.size() << " viewers :)" << endl;
+
+		// range-based loop
+		for (auto pViewer : Viewers)
+		{
+			pViewer->Print();
+		}
+
+		// index-based for loop
+		//for (int i = 0; i < Viewers.size(); ++i)
+		//{
+		//	Viewers[i]->Print();
+		//}
+	}
 }
