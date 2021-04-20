@@ -8,5 +8,7 @@ int main()
 {
 	Movie Matrix("The Matrix", 8.7, 1999, 9, 3);
 
+	Matrix.Print();
+
 	return 0;
 }

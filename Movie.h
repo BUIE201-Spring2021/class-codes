@@ -13,5 +13,7 @@ class Movie
 
 public:
 	Movie(string NameIn, double ScoreIn, int YearIn, int MonthIn, int DayIn);
+
+	void Print();
 };
 
