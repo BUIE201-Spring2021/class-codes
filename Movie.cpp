@@ -36,6 +36,7 @@ void Movie::AddViewer(Viewer* pViewer)
 	// (*pViewer).Print();
 
 	Viewers.push_back(pViewer);
+	pViewer->AddMovie(this);
 }
 
 void Movie::ShowViewers()
