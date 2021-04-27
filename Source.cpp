@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 #include "DateClass.h"
 #include "Movie.h"
 #include "Viewer.h"
@@ -7,47 +8,54 @@ using namespace std;
 
 int main()
 {
-	int iStack = 5;
+	map<string, Movie*> Movies;
+	Movies["matrix"] = new Movie("The Matrix", 8.7, 1999, 9, 3);
+	Movies["lotr"] = new Movie("Lord of the Rings", 8.8, 2001, 12, 21);
 
-	int* piHeap = new int;
-	*piHeap = 10;
-	delete piHeap;
-	piHeap = nullptr;
+	cout << "Please enter number of viewers " << endl;
+	int nViewers;
+	cin >> nViewers;
 
-	double* pDbl = new double;
-	*pDbl = 4;
-	cout << *pDbl << endl;
-	delete pDbl;
-	pDbl = nullptr;
+	map<string, Viewer*> Viewers;
+	for (int i = 0; i < nViewers; ++i)
+	{
+		cout << "Please enter name for viewer " << i << endl;
+		string name;
+		cin >> name;
 
+		Viewer* pViewer = new Viewer(name);
+		Viewers[name] = pViewer;
+	}
 
-	Movie Matrix("The Matrix", 8.7, 1999, 9, 3);
-	Matrix.ShowViewers();
+	cout << "Here are the viewers " << endl;
+	for (auto [name, pViewer] : Viewers)
+		pViewer->Print();
 
-	Viewer caner("Caner Taskin");
-	Viewer tamer("Tamer Unal");
+	while (true)
+	{
+		cout << "Please enter movie name: " << endl;
+		string movieName;
+		cin >> movieName;
 
-	Matrix.AddViewer(&caner);
+		if (movieName == "0")
+			break;
 
-	// This is possible, but needs a lot of copy/paste
-	// caner.AddMovie(&Matrix);
+		if (Movies.count(movieName) == 0)
+		{
+			cout << "Unknown movie: " << movieName << endl;
+			continue;
+		}
+		else
+		{
+			Movie* pMovie = Movies[movieName];
+			cout << "Movie found: " << endl;
+			pMovie->Print();
+		}
+	}
 
-	Matrix.AddViewer(&tamer);
-
-	Matrix.ShowViewers();
-
-	Movie LOTR("Lord of the Rings", 8.8, 2001, 12, 21);
-	Viewer aybek("Aybek Korugan");
-
-	LOTR.AddViewer(&aybek);
-	LOTR.AddViewer(&caner);
-
-	LOTR.ShowViewers();
-
-
-	caner.ShowMovies();
-	tamer.ShowMovies();
-	aybek.ShowMovies();
+	for (auto [name, pViewer] : Viewers)
+		delete pViewer;
+	Viewers.clear();
 
 	return 0;
 }
