@@ -7,6 +7,20 @@ using namespace std;
 
 int main()
 {
+	int iStack = 5;
+
+	int* piHeap = new int;
+	*piHeap = 10;
+	delete piHeap;
+	piHeap = nullptr;
+
+	double* pDbl = new double;
+	*pDbl = 4;
+	cout << *pDbl << endl;
+	delete pDbl;
+	pDbl = nullptr;
+
+
 	Movie Matrix("The Matrix", 8.7, 1999, 9, 3);
 	Matrix.ShowViewers();
 
