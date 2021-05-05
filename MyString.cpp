@@ -1,17 +1,14 @@
 #include "MyString.h"
+#include <iostream>
 
 MyString::MyString(const char* pExisting) : pString(nullptr)
 {
-	int length = Length(pExisting);
-	pString = new char[length + 1];
+	SetString(pExisting);
+}
 
-	for (int i = 0; i < length; ++i)
-		pString[i] = pExisting[i];
-
-	pString[length] = '\0';
-
-	// equivalent via pointer arithmetic
-	// *(pString + length) = '\0';
+MyString::MyString(MyString& other) : pString(nullptr)
+{
+	SetString(other.pString);
 }
 
 MyString::~MyString()
@@ -32,6 +29,8 @@ void MyString::SetString(const char* pNew)
 		pString[i] = pNew[i];
 
 	pString[length] = '\0';
+	// equivalent via pointer arithmetic
+	// *(pString + length) = '\0';
 }
 
 int MyString::Length(const char* pExisting)
@@ -69,4 +68,12 @@ int MyString::Count(char c)
 		++i;
 	}
 	return count;
+}
+
+void MyString::Print()
+{
+	if (pString == nullptr)
+		std::cout << "[Empty string]" << std::endl;
+	else
+		std::cout << pString << std::endl;
 }
