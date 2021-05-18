@@ -1,28 +1,19 @@
 #include <iostream>
-#include <string>
-#include "MyString.h"
 
 using namespace std;
 
-void PrintString(MyString str)
-{
-	cout << "PrintString - begin" << endl;
-	str.Print();
-	cout << "PrintString - end" << endl;
-}
+//#define ARRAY_SIZE_MACRO 10
 
 int main()
 {
-	string myString("IE 201");
+	const int ARRAY_SIZE = 10;
+	int StackArray[ARRAY_SIZE];
 
-	MyString str("IE 201 Intermediate Programming");
+	int nIntegers;
+	cout << "Please enter number of items: " << endl;
+	cin >> nIntegers;
 
-	int length = str.Length();
-	int countI = str.Count('I');
+	// The following does not work since nIntegers is not a const.
+	int Array[nIntegers];
 
-	str.SetString("IE 203 Operations Research II");
-	int length203 = str.Length();
-	int countI203 = str.Count('I');
-
-	PrintString(str);
 }
