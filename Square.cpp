@@ -5,11 +5,13 @@ using namespace std;
 
 Square::Square()
 {
+	cout << "Square::Square()" << endl;
 	length = 0;
 }
 
 Square::Square(int l)
 {
+	cout << "Square::Square(int l)" << endl;
 	length = l;
 }
 

@@ -5,12 +5,16 @@ using namespace std;
 
 Rectangle::Rectangle()
 {
+	cout << "Rectangle::Rectangle()" << endl;
+
 	height = 0;
 	width = 0;
 }
 
 Rectangle::Rectangle(int h, int w)
 {
+	cout << "Rectangle::Rectangle(int h, int w)" << endl;
+
 	height = h;
 	width = w;
 }
