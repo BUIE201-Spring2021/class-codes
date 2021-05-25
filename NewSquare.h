@@ -6,5 +6,7 @@ class NewSquare : public Rectangle
 public:
 	NewSquare();
 	NewSquare(int l);
+
+	void Print();	// Function overriding
 };
 
