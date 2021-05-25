@@ -5,9 +5,10 @@ class NewSquare : public Rectangle
 {
 public:
 	NewSquare();
-	~NewSquare();
+	virtual ~NewSquare();
 	NewSquare(int l);
 
 	void Print();	// Function overriding
+	virtual void VirtualPrint();
 };
 

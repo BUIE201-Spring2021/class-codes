@@ -8,8 +8,10 @@ protected:		// Behaves as public for child classes, private for others
 
 public:
 	Rectangle();
-	~Rectangle();
+	virtual ~Rectangle();
 	Rectangle(int h, int w);
+
 	void Print();
+	virtual void VirtualPrint();
 };
 

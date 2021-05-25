@@ -20,10 +20,12 @@ int main()
 
 	NewSquare* pNS = new NewSquare(4);
 	pNS->Print();
+	pNS->VirtualPrint();
 	delete pNS;
 
 	Rectangle* pNS2 = new NewSquare(6);
 	pNS2->Print();
+	pNS2->VirtualPrint();
 	delete pNS2;
 
 

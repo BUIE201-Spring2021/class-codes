@@ -34,3 +34,14 @@ void NewSquare::Print()
 		cout << endl;
 	}
 }
+
+void NewSquare::VirtualPrint()
+{
+	cout << "NewSquare::VirtualPrint()" << endl;
+	for (int i = 0; i < height; ++i)
+	{
+		for (int j = 0; j < width; ++j)
+			cout << "+";
+		cout << endl;
+	}
+}
