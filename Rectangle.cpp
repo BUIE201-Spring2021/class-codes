@@ -21,6 +21,8 @@ Rectangle::Rectangle(int h, int w)
 
 void Rectangle::Print()
 {
+	cout << "Rectangle::Print()" << endl;
+
 	for (int i = 0; i < height; ++i)
 	{
 		for (int j = 0; j < width; ++j)
