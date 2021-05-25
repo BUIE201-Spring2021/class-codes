@@ -19,6 +19,11 @@ Rectangle::Rectangle(int h, int w)
 	width = w;
 }
 
+Rectangle::~Rectangle()
+{
+	cout << "Rectangle::~Rectangle()" << endl;
+}
+
 void Rectangle::Print()
 {
 	cout << "Rectangle::Print()" << endl;

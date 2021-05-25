@@ -8,6 +8,7 @@ protected:		// Behaves as public for child classes, private for others
 
 public:
 	Rectangle();
+	~Rectangle();
 	Rectangle(int h, int w);
 	void Print();
 };

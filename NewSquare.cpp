@@ -17,6 +17,11 @@ NewSquare::NewSquare(int l) : Rectangle(l, l)
 	// height = l;
 }
 
+NewSquare::~NewSquare()
+{
+	cout << "NewSquare::~NewSquare()" << endl;
+}
+
 void NewSquare::Print()
 {
 	Rectangle::Print();

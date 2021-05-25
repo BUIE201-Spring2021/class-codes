@@ -7,12 +7,16 @@ using namespace std;
 
 int main()
 {
-	Rectangle r(5, 7);
-	r.Print();
+	//Rectangle r(5, 7);
+	//r.Print();
 
-	Square s(4);
-	s.Print();
+	//Square s(4);
+	//s.Print();
 
-	NewSquare ns(3);
-	ns.Print();
+	{
+		NewSquare ns(3);
+		ns.Print();
+	}
+
+	return 0;
 }
