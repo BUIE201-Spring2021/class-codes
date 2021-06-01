@@ -77,3 +77,54 @@ void MyString::Print()
 	else
 		std::cout << pString << std::endl;
 }
+
+bool MyString::StartsWith(const char* pOther)
+{
+	int thisLength = Length(pString);
+	int otherLength = Length(pOther);
+
+	if (otherLength == 0 || thisLength == 0)
+		return false;
+
+	if (thisLength < otherLength)
+		return false;
+
+	for (int i = 0; i < otherLength; ++i)
+		if (pOther[i] != pString[i])
+			return false;
+
+	return true;
+}
+
+bool MyString::Equals(int start, int otherLength, const char* pOther)
+{
+	for (int i = 0; i < otherLength; ++i)
+		if (pString[start + i] != pOther[i])
+			return false;
+
+	return true;
+}
+
+bool MyString::Contains(const char* pOther)
+{
+	int thisLength = Length(pString);
+	int otherLength = Length(pOther);
+
+	if (otherLength == 0)
+		return true;
+
+	if (thisLength == 0)
+		return false;
+
+	if (thisLength < otherLength)
+		return false;
+
+	for (int start = 0; start < thisLength - otherLength; ++start)
+	{
+		bool Equal = Equals(start, otherLength, pOther);
+		if (Equal == true)
+			return true;
+	}
+
+	return false;
+}
