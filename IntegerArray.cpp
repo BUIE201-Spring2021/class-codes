@@ -1,4 +1,6 @@
 #include "IntegerArray.h"
+#include <iostream>
+using namespace std;
 
 IntegerArray::IntegerArray()
 {
@@ -23,4 +25,23 @@ void IntegerArray::Insert(int value)
 
 	delete[] pArray;
 	pArray = pNewArray;
+}
+
+// O(n)
+void IntegerArray::Print()
+{
+	cout << "[ ";
+	for (int i = 0; i < size; ++i)
+		cout << pArray[i] << " ";
+	cout << "]";
+}
+
+// O(n)
+bool IntegerArray::Find(int value)
+{
+	for (int i = 0; i < size; ++i)
+		if (pArray[i] == value)
+			return true;
+
+	return false;
 }
