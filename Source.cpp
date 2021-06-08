@@ -1,18 +1,54 @@
 #include <iostream>
-#include "IntegerArray.h"
 
 using namespace std;
 
+class ListNode
+{
+public:
+	int Value;
+	ListNode* pNext;
+
+	ListNode(int ValueIn)
+	{
+		Value = ValueIn;
+		pNext = nullptr;
+	}
+};
+
+// O(1)
+void InsertFront(ListNode*& pRoot, int Value)
+{
+	ListNode* pNew = new ListNode(Value);
+	pNew->pNext = pRoot;
+	pRoot = pNew;
+}
+
+// O(n)
+int Size(ListNode* pRoot)
+{
+	if (pRoot)
+	{
+		int count = 1;
+		ListNode* pCurrent = pRoot;
+		while (pCurrent->pNext != nullptr)
+		{
+			++count;
+			pCurrent = pCurrent->pNext;
+		}
+		return count;
+	}
+	else
+		return 0;
+}
+
+
 int main()
 {
-	IntegerArray myArray;
-	myArray.Insert(4);
-	myArray.Insert(5);
-	myArray.Insert(3);
+	ListNode* pRoot = nullptr;
+	int initialSize = Size(pRoot);
 
-	myArray.Print();
+	InsertFront(pRoot, 4);
+	InsertFront(pRoot, 10);
 
-	bool find5 = myArray.Find(5);
-	bool find10 = myArray.Find(10);
-
+	int Size2 = Size(pRoot);
 }
