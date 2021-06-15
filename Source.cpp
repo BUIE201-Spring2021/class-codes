@@ -23,6 +23,9 @@ void InsertFront(ListNode*& pRoot, int Value)
 	pRoot = pNew;
 }
 
+// InsertBack complexity O(n)
+// (unless we're using double linked list)
+
 // O(n)
 int Size(ListNode* pRoot)
 {
