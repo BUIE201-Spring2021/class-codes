@@ -2,83 +2,69 @@
 
 using namespace std;
 
-class ListNode
+class TreeNode
 {
 public:
 	int Value;
-	ListNode* pNext;
+	TreeNode* pLeft;
+	TreeNode* pRight;
 
-	ListNode(int ValueIn)
+	TreeNode(int ValueIn)
 	{
 		Value = ValueIn;
-		pNext = nullptr;
+		pLeft = nullptr;
+		pRight = nullptr;
 	}
 };
 
-// O(1)
-void InsertFront(ListNode*& pRoot, int Value)
-{
-	ListNode* pNew = new ListNode(Value);
-	pNew->pNext = pRoot;
-	pRoot = pNew;
-}
-
-// InsertBack complexity O(n)
-// (unless we're using double linked list)
-
-// O(n)
-int Size(ListNode* pRoot)
-{
-	if (pRoot)
-	{
-		int count = 1;
-		ListNode* pCurrent = pRoot;
-		while (pCurrent->pNext != nullptr)
-		{
-			++count;
-			pCurrent = pCurrent->pNext;
-		}
-		return count;
-	}
-	else
-		return 0;
-}
-
-// O(n)
-int SizeRecursive(ListNode* pRoot)
+// O(log n)
+void Insert(TreeNode*& pRoot, int value)
 {
 	if (pRoot == nullptr)
-		return 0;
+		pRoot = new TreeNode(value);
+	else if (value > pRoot->Value)
+		Insert(pRoot->pRight, value);
 	else
-		return 1 + SizeRecursive(pRoot->pNext);
+		Insert(pRoot->pLeft, value);
 }
 
-// O(n)
-bool Find(ListNode* pRoot, int value)
+// O(log n)
+bool Find(TreeNode* pRoot, int value)
 {
 	if (pRoot == nullptr)
 		return false;
+	else if (value == pRoot->Value)
+		return true;
+	else if (value > pRoot->Value)
+		return Find(pRoot->pRight, value);
+	else
+		return Find(pRoot->pLeft, value);
+}
+
+// O(n)
+int Size(TreeNode* pRoot)
+{
+	if (pRoot == nullptr)
+		return 0;
 	else
 	{
-		if (pRoot->Value == value)
-			return true;
-		else
-			return Find(pRoot->pNext, value);
+		int LeftSize = Size(pRoot->pLeft);
+		int RightSize = Size(pRoot->pRight);
+		return 1 + LeftSize + RightSize;
 	}
 }
 
 int main()
 {
-	ListNode* pRoot = nullptr;
-	int initialSize = Size(pRoot);
+	TreeNode* pRoot = nullptr;
+	Insert(pRoot, 15);
+	Insert(pRoot, 20);
+	Insert(pRoot, 6);
+	Insert(pRoot, 10);
+	Insert(pRoot, 3);
 
-	InsertFront(pRoot, 4);
-	InsertFront(pRoot, 10);
-
-	int Size2 = Size(pRoot);
-	int Size2Recursive = SizeRecursive(pRoot);
-
-	bool Find4 = Find(pRoot, 4);
+	bool Find6 = Find(pRoot, 6);
 	bool Find8 = Find(pRoot, 8);
 
+	int size = Size(pRoot);
 }
