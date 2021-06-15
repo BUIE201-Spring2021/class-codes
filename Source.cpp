@@ -50,6 +50,20 @@ int SizeRecursive(ListNode* pRoot)
 		return 1 + SizeRecursive(pRoot->pNext);
 }
 
+// O(n)
+bool Find(ListNode* pRoot, int value)
+{
+	if (pRoot == nullptr)
+		return false;
+	else
+	{
+		if (pRoot->Value == value)
+			return true;
+		else
+			return Find(pRoot->pNext, value);
+	}
+}
+
 int main()
 {
 	ListNode* pRoot = nullptr;
@@ -60,4 +74,8 @@ int main()
 
 	int Size2 = Size(pRoot);
 	int Size2Recursive = SizeRecursive(pRoot);
+
+	bool Find4 = Find(pRoot, 4);
+	bool Find8 = Find(pRoot, 8);
+
 }
