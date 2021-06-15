@@ -41,6 +41,14 @@ int Size(ListNode* pRoot)
 		return 0;
 }
 
+// O(n)
+int SizeRecursive(ListNode* pRoot)
+{
+	if (pRoot == nullptr)
+		return 0;
+	else
+		return 1 + SizeRecursive(pRoot->pNext);
+}
 
 int main()
 {
@@ -51,4 +59,5 @@ int main()
 	InsertFront(pRoot, 10);
 
 	int Size2 = Size(pRoot);
+	int Size2Recursive = SizeRecursive(pRoot);
 }
