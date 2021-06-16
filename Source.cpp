@@ -54,6 +54,18 @@ int Size(TreeNode* pRoot)
 	}
 }
 
+// In-order printing
+void Print(TreeNode* pRoot)
+{
+	if (pRoot)
+	{
+		Print(pRoot->pLeft);
+		cout << pRoot->Value << endl;
+		Print(pRoot->pRight);
+	}
+}
+
+
 int main()
 {
 	TreeNode* pRoot = nullptr;
@@ -67,4 +79,6 @@ int main()
 	bool Find8 = Find(pRoot, 8);
 
 	int size = Size(pRoot);
+
+	Print(pRoot);
 }
